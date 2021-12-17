@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Main Page</title>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #c9e7cb;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#customer-info {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+#customer-info td, #customer-info th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customer-info tr:nth-child(even){background-color: #f2f2f2;}
+
+#customer-info tr:hover {background-color: #ddd;}
+
+#customer-info th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #1e4620;
+  color: white;
+  width: 250px;
+}
+
+#securities {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#securities td, #securities th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#securities tr:nth-child(even){background-color: #f2f2f2;}
+
+#securities tr:hover {background-color: #bee0ec;}
+
+#securities th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #2596be;
+  color: white;
+}
+</style>
+<script>
+    function rowClicked(value) {
+        location.href = "/main-page?id=" + value;
+    }
+</script>
+</head>
+<body>
+	<h2 th:text="${mainMessage}" ></h2>
+
+	<table id="customers">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Country</th>
+			</tr>
+			<tr th:each="customer: ${customers}" th:attr="onclick=|rowClicked('${customer.id}')|" style="cursor: pointer">
+			    <td th:text="${customer.id}" />
+			    <td th:text="${customer.name}" />
+			    <td th:text="${customer.country}" />
+			</tr>			
+		</thead>
+	</table>
+	<br/>
+
+	<table id="customer-info">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<td th:text="${selectedCustomer.id}" />
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td th:text="${selectedCustomer.name}" />
+			</tr>
+			<tr>
+				<th>Address</th>
+				<td th:text="${selectedCustomer.address}" />
+			</tr>
+			<tr>
+				<th>City</th>
+				<td th:text="${selectedCustomer.city}" />
+			</tr>
+			<tr>
+				<th>State/Province</th>
+				<td th:text="${selectedCustomer.state}" />
+			</tr>
+			<tr>
+				<th>Zip Code</th>
+				<td th:text="${selectedCustomer.zipCode}" />
+			</tr>
+			<tr>
+				<th>Country</th>
+				<td th:text="${selectedCustomer.country}" />
+			</tr>
+			<tr>
+				<th>Phone Number</th>
+				<td th:text="${selectedCustomer.phoneNumber}" />
+			</tr>
+			<tr>
+				<th>Fax Number</th>
+				<td th:text="${selectedCustomer.faxNumber}" />
+			</tr>
+			<tr>
+				<th>Electronic Confirmations ?</th>
+				<td th:text="${selectedCustomer.eConfirmations}" />
+			</tr>
+			
+		</thead>
+	</table>
+	
+	<br/>	
+	
+	<table id="securities">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Type</th>
+				<th>ISIN</th>
+				<th>Description</th>
+			</tr>
+			<tr th:each="security: ${securities}">
+			    <td th:text="${security.id}" />
+			    <td th:text="${security.type}" />
+			    <td th:text="${security.isin}" />
+			    <td th:text="${security.description}" />
+			</tr>			
+		</thead>
+	</table>
+	
+</body>
+</html>

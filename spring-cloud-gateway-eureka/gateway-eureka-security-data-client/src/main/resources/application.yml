@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: security-data-client
+server:
+  port: 0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    preferIpAddress: true
